@@ -4,6 +4,9 @@
  */
 package logica.logica2;
 
+import Excepciones.BaseException;
+import Excepciones.MalformedResiduo;
+import Excepciones.ResiduoExistenteException;
 import fachada.Asignacion;
 import fachada.Empresa;
 import fachada.Productor;
@@ -20,8 +23,8 @@ import java.util.List;
  */
 public interface ILogica {
     public boolean comprobarResiduo(Residuo residuo);
-    public void guardarResiduo(Residuo residuo);
-    public List<Quimico> obtenerTodosLosQuimicos();
+    public void guardarResiduo(Residuo residuo) throws MalformedResiduo, ResiduoExistenteException;
+    public List<Quimico> obtenerTodosLosQuimicos() throws BaseException;
     public List<Solicitud> obtenerTodasLasSolicitudes();
     public List<Empresa> obtenerTodasLasEmpresas();
     public void guardarSolicitud(Solicitud solicitud);

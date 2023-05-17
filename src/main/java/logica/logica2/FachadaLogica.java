@@ -4,6 +4,9 @@
  */
 package logica.logica2;
 
+import Excepciones.BaseException;
+import Excepciones.MalformedResiduo;
+import Excepciones.ResiduoExistenteException;
 import logica.logica2.ILogica;
 import fachada.Asignacion;
 import fachada.Empresa;
@@ -38,13 +41,22 @@ class FachadaLogica implements ILogica {
         return controladorRegistrarResiduo.comprobarResiduo(residuo);
     }
 
+    
+    //LISTO
     @Override
-    public void guardarResiduo(Residuo residuo) {
+    public void guardarResiduo(Residuo residuo) throws MalformedResiduo, ResiduoExistenteException{
+        //Comprueba la integridad del residuo
+        residuo.verificar();
+        //Comprueba que no exista antes
+        if(controladorRegistrarResiduo.comprobarResiduo(residuo)) {
+            throw new ResiduoExistenteException("El quimico ya existe");
+        }
+        //Guarda el residuo
         controladorRegistrarResiduo.guardarResiduo(residuo);
     }
 
     @Override
-    public List<Quimico> obtenerTodosLosQuimicos() {
+    public List<Quimico> obtenerTodosLosQuimicos()  throws BaseException{
         return controladorRegistrarResiduo.obtenerTodosLosQuimicos();
     }
 

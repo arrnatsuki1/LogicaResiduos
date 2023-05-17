@@ -5,6 +5,7 @@
 package logica.logica2;
 
 
+import Excepciones.BaseException;
 import fachada.FabricaDatos;
 import fachada.IDatos;
 import fachada.Quimico;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 class ControladorRegistrarResiduo {
     
-    public List<Quimico> obtenerTodosLosQuimicos() {
+    public List<Quimico> obtenerTodosLosQuimicos() throws BaseException{
         IDatos daodatos = FabricaDatos.getInstance();
         return daodatos.obtenerTodosLosQuimicos();
     }   
