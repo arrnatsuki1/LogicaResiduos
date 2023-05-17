@@ -4,6 +4,7 @@
  */
 package pkg;
 
+import Entidades.Asignacion;
 import Entidades.Empresa;
 import Entidades.Solicitud;
 import fachada.FabricaDatos;
@@ -26,9 +27,9 @@ class ControladorAsignarTraslado {
         return daodatos.obtenerTodasLasEmpresas();
     }
     
-    public void guardarSolicitud(Solicitud solicitud) {
+    public void guardarAsignacion(Asignacion asignacion) {
         IDatos daodatos = FabricaDatos.getInstance();
-        daodatos.guardarSolicitud(solicitud);
+        daodatos.guardarSolicitud(asignacion);
     }
     
 }

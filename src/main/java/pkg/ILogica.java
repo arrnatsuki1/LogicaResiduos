@@ -4,6 +4,7 @@
  */
 package pkg;
 
+import Entidades.Asignacion;
 import Entidades.Empresa;
 import Entidades.Productor;
 import Entidades.Quimico;
@@ -30,4 +31,5 @@ public interface ILogica {
     public List<Traslado> getTrasladosNoAtendidos();
     public List<Transporte> getTodosLosVehiculosDisponibles();
     public void guardarTraslado(Traslado traslado);
+    public void guardarAsignacion(Asignacion asignacion);
 }

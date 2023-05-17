@@ -32,9 +32,9 @@ class ControladorSolicitarTraslado {
         return daodatos.haySolicitudFechaProductor(p);
     }
     
-    public void guardarSolicitud() {
+    public void guardarSolicitud(Solicitud solicitud) {
         IDatos daodatos = FabricaDatos.getInstance();
-        daodatos.guardarSolicitud();
+        daodatos.guardarSolicitud(solicitud);
     }
     
     

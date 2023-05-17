@@ -4,6 +4,7 @@
  */
 package pkg;
 
+import Entidades.Asignacion;
 import Entidades.Empresa;
 import Entidades.Productor;
 import Entidades.Quimico;
@@ -58,7 +59,7 @@ class FachadaLogica implements ILogica {
 
     @Override
     public void guardarSolicitud(Solicitud solicitud) {
-        controladorAsignarTraslado.guardarSolicitud(solicitud);
+        controladorSolicitarTraslado.guardarSolicitud(solicitud);
     }
 
     @Override
@@ -90,4 +91,10 @@ class FachadaLogica implements ILogica {
     public void guardarTraslado(Traslado traslado) {
         controladorRegistrarTraslado.guardarTraslado(traslado);
     }
+    
+    @Override
+    public void guardarAsignacion(Asignacion asignacion){
+        controladorAsignarTraslado.guardarAsignacion(asignacion);
+    }
+    
 }
