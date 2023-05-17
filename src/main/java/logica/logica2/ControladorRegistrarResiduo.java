@@ -2,12 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package pkg;
+package logica.logica2;
 
-import Entidades.Quimico;
-import Entidades.Residuo;
+
 import fachada.FabricaDatos;
 import fachada.IDatos;
+import fachada.Quimico;
+import fachada.Residuo;
 import java.util.List;
 
 /**
