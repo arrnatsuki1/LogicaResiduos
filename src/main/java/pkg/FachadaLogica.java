@@ -4,40 +4,90 @@
  */
 package pkg;
 
+import Entidades.Empresa;
+import Entidades.Productor;
 import Entidades.Quimico;
 import Entidades.Residuo;
-import fachada.FabricaDatos;
+import Entidades.Solicitud;
+import Entidades.Transporte;
+import Entidades.Traslado;
 import java.util.List;
 
 /**
  *
  * @author Rosa Rodriguez
  */
-class FachadaLogica implements ILogica{
+class FachadaLogica implements ILogica {
 
-    private ControladorDatos controladorDatos;
-    
+    private ControladorAsignarTraslado controladorAsignarTraslado;
+    private ControladorSolicitarTraslado controladorSolicitarTraslado;
+    private ControladorRegistrarResiduo controladorRegistrarResiduo;
+    private ControladorRegistrarTraslado controladorRegistrarTraslado;
+
     public FachadaLogica() {
-        controladorDatos = new ControladorDatos(FabricaDatos.getInstance());
-    }
-    
-    @Override
-    public List<Residuo> obtenerTodosLosResiduos() {
-        return controladorDatos.obtenerTodosLosResiduos();
+        controladorAsignarTraslado = new ControladorAsignarTraslado();
+        controladorSolicitarTraslado = new ControladorSolicitarTraslado();
+        controladorRegistrarResiduo = new ControladorRegistrarResiduo();
+        controladorRegistrarTraslado = new ControladorRegistrarTraslado();
     }
 
     @Override
     public boolean comprobarResiduo(Residuo residuo) {
-        return controladorDatos.comprobarResiduo(residuo);
+        return controladorRegistrarResiduo.comprobarResiduo(residuo);
     }
 
     @Override
     public void guardarResiduo(Residuo residuo) {
-        controladorDatos.guardarResiduo(residuo);
+        controladorRegistrarResiduo.guardarResiduo(residuo);
     }
 
     @Override
     public List<Quimico> obtenerTodosLosQuimicos() {
-        return controladorDatos.obtenerTodosLosQuimicos();  
+        return controladorRegistrarResiduo.obtenerTodosLosQuimicos();
+    }
+
+    @Override
+    public List<Solicitud> obtenerTodasLasSolicitudes() {
+        return controladorAsignarTraslado.obtenerTodasLasSolicitudes();
+    }
+
+    @Override
+    public List<Empresa> obtenerTodasLasEmpresas() {
+        return controladorAsignarTraslado.obtenerTodasLasEmpresas();
+    }
+
+    @Override
+    public void guardarSolicitud(Solicitud solicitud) {
+        controladorAsignarTraslado.guardarSolicitud(solicitud);
+    }
+
+    @Override
+    public List<Residuo> obtenerTodosLosResiduosDeProductor(Productor productor) {
+        return controladorSolicitarTraslado.obtenerTodosLosResiduosDeProductor(productor);
+    }
+
+    @Override
+    public int verificarCantidadFecha(Solicitud solicitud) {
+        return controladorSolicitarTraslado.verificaCantidadFecha(solicitud);
+    }
+
+    @Override
+    public boolean haySolicitudFechaProductor(Productor p) {
+        return controladorSolicitarTraslado.haySolicitudFechaProductor(p);
+    }
+
+    @Override
+    public List<Traslado> getTrasladosNoAtendidos() {
+        return controladorRegistrarTraslado.getTrasladosNoAtendidos();
+    }
+
+    @Override
+    public List<Transporte> getTodosLosVehiculosDisponibles() {
+        return controladorRegistrarTraslado.getTodosLosVehiculosDisponibles();
+    }
+
+    @Override
+    public void guardarTraslado(Traslado traslado) {
+        controladorRegistrarTraslado.guardarTraslado(traslado);
     }
 }

@@ -6,6 +6,7 @@ package pkg;
 
 import Entidades.Quimico;
 import Entidades.Residuo;
+import fachada.FabricaDatos;
 import fachada.IDatos;
 import java.util.List;
 
@@ -13,28 +14,21 @@ import java.util.List;
  *
  * @author Rosa Rodriguez
  */
-class ControladorDatos {
-    
-    private IDatos fachada;
-    
-    public ControladorDatos(IDatos fachada) {
-        this.fachada = fachada;
-    }
+class ControladorRegistrarResiduo {
     
     public List<Quimico> obtenerTodosLosQuimicos() {
-        return fachada.obtenerTodosLosQuimicos();
-    }
-    
-    public List<Residuo> obtenerTodosLosResiduos() {
-        return fachada.obtenerTodosLosResiduos();
-    }
+        IDatos daodatos = FabricaDatos.getInstance();
+        return daodatos.obtenerTodosLosQuimicos();
+    }   
     
     public boolean comprobarResiduo(Residuo residuo) {
-        return fachada.comprobarResiduo(residuo);
-    }
+        IDatos daodatos = FabricaDatos.getInstance();
+        return daodatos.comprobarResiduo(residuo);
+    }   
     
-    public void guardarResiduo(Residuo residuo){
-        fachada.guardarResiduo(residuo);
+    public void guardarResiduo(Residuo residuo) {
+        IDatos daodatos = FabricaDatos.getInstance();
+        daodatos.guardarResiduo(residuo);
     }
     
 }
