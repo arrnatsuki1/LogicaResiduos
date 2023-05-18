@@ -5,8 +5,11 @@
 package logica.logica2;
 
 import Excepciones.BaseException;
+import Excepciones.ExcedeCantidadTrasladoException;
 import Excepciones.MalformedResiduo;
+import Excepciones.MalformedSolicitud;
 import Excepciones.ResiduoExistenteException;
+import Excepciones.SolicitudExistenteException;
 import fachada.Asignacion;
 import fachada.Empresa;
 import fachada.Productor;
@@ -15,6 +18,7 @@ import fachada.Residuo;
 import fachada.Solicitud;
 import fachada.Transporte;
 import fachada.Traslado;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,11 +32,12 @@ public interface ILogica {
     public List<Solicitud> obtenerTodasLasSolicitudes();
     public List<Empresa> obtenerTodasLasEmpresas();
     public void guardarSolicitud(Solicitud solicitud);
-    public List<Residuo> obtenerTodosLosResiduosDeProductor(Productor productor);
-    public int verificarCantidadFecha(Solicitud solicitud);
-    public boolean haySolicitudFechaProductor(Productor productor);
+    public List<Residuo> obtenerTodosLosResiduosDeProductor(String productor) throws BaseException;
+    public boolean haySolicitudFechaProductor(Solicitud s);
     public List<Traslado> getTrasladosNoAtendidos();
     public List<Transporte> getTodosLosVehiculosDisponibles();
     public void guardarTraslado(Traslado traslado);
     public void guardarAsignacion(Asignacion asignacion);
+    public void solicitarTraslado(Solicitud solicitud) throws MalformedSolicitud, ExcedeCantidadTrasladoException, SolicitudExistenteException;
+    public long verificaCantidadFecha(Date dia);
 }

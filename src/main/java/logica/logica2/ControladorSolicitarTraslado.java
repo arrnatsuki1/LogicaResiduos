@@ -4,11 +4,14 @@
  */
 package logica.logica2;
 
+import Excepciones.BaseException;
 import fachada.Productor;
 import fachada.Residuo;
 import fachada.Solicitud;
 import fachada.FabricaDatos;
 import fachada.IDatos;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,24 +20,24 @@ import java.util.List;
  */
 class ControladorSolicitarTraslado {
     
-    public List<Residuo> obtenerTodosLosResiduosDeProductor(Productor p ) {
+    public List<Residuo> obtenerTodosLosResiduosDeProductor(String p) throws BaseException{
         IDatos daodatos = FabricaDatos.getInstance();
-        return null;
+        return daodatos.obtenerTodosLosDeProductor(p);
     }
     
-    public int verificaCantidadFecha(Solicitud solicitud) {
+    public long verificaCantidadFecha(Date calendar) {
         IDatos daodatos = FabricaDatos.getInstance();
-        return -1;
+        return daodatos.verificaCantidadFecha(calendar);
     }
     
-    public boolean haySolicitudFechaProductor(Productor p) {
+    public boolean haySolicitudFechaProductor(Solicitud s) {
         IDatos daodatos = FabricaDatos.getInstance();
-        return false;
+        return daodatos.haySolicitudFechaProductor(s);
     }
     
     public void guardarSolicitud(Solicitud solicitud) {
         IDatos daodatos = FabricaDatos.getInstance();
-       
+        daodatos.guardarSolicitud(solicitud);
     }
     
     

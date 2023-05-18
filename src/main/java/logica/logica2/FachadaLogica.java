@@ -5,8 +5,11 @@
 package logica.logica2;
 
 import Excepciones.BaseException;
+import Excepciones.ExcedeCantidadTrasladoException;
 import Excepciones.MalformedResiduo;
+import Excepciones.MalformedSolicitud;
 import Excepciones.ResiduoExistenteException;
+import Excepciones.SolicitudExistenteException;
 import logica.logica2.ILogica;
 import fachada.Asignacion;
 import fachada.Empresa;
@@ -16,6 +19,8 @@ import fachada.Residuo;
 import fachada.Solicitud;
 import fachada.Transporte;
 import fachada.Traslado;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -76,18 +81,13 @@ class FachadaLogica implements ILogica {
     }
 
     @Override
-    public List<Residuo> obtenerTodosLosResiduosDeProductor(Productor productor) {
+    public List<Residuo> obtenerTodosLosResiduosDeProductor(String productor) throws BaseException{
         return controladorSolicitarTraslado.obtenerTodosLosResiduosDeProductor(productor);
     }
 
     @Override
-    public int verificarCantidadFecha(Solicitud solicitud) {
-        return controladorSolicitarTraslado.verificaCantidadFecha(solicitud);
-    }
-
-    @Override
-    public boolean haySolicitudFechaProductor(Productor p) {
-        return controladorSolicitarTraslado.haySolicitudFechaProductor(p);
+    public boolean haySolicitudFechaProductor(Solicitud s) {
+        return controladorSolicitarTraslado.haySolicitudFechaProductor(s);
     }
 
     @Override
@@ -109,5 +109,30 @@ class FachadaLogica implements ILogica {
     public void guardarAsignacion(Asignacion asignacion){
         controladorAsignarTraslado.guardarAsignacion(asignacion);
     }
+
+    @Override
+    public void solicitarTraslado(Solicitud solicitud) throws MalformedSolicitud, ExcedeCantidadTrasladoException, SolicitudExistenteException {
+        //Se verifica
+        solicitud.verificar();
+        //Verifica que no haya mas de 5 traslados
+        
+        
+        //Hay solicitud para esa fecha
+        if( this.haySolicitudFechaProductor(solicitud) ) {
+            throw new SolicitudExistenteException("Ya hay una solicitud del mismo productor y con los mismos residuos para esta fecha");
+        }
+        
+        if(verificaCantidadFecha(solicitud.getFechaSalida())>=5){
+            throw new ExcedeCantidadTrasladoException("Ya hay 5 o mas traslados para ese dia");
+        }
+        
+        this.guardarSolicitud(solicitud);
+        
+    }
+    
+    @Override
+    public long verificaCantidadFecha(Date dia){
+        return controladorSolicitarTraslado.verificaCantidadFecha(dia);
+    };
     
 }
