@@ -66,12 +66,12 @@ class FachadaLogica implements ILogica {
     }
 
     @Override
-    public List<Solicitud> obtenerTodasLasSolicitudes() {
+    public List<Solicitud> obtenerTodasLasSolicitudes() throws BaseException {
         return controladorAsignarTraslado.obtenerTodasLasSolicitudes();
     }
 
     @Override
-    public List<Empresa> obtenerTodasLasEmpresas() {
+    public List<Empresa> obtenerTodasLasEmpresas() throws BaseException{
         return controladorAsignarTraslado.obtenerTodasLasEmpresas();
     }
 
@@ -134,5 +134,11 @@ class FachadaLogica implements ILogica {
     public long verificaCantidadFecha(Date dia){
         return controladorSolicitarTraslado.verificaCantidadFecha(dia);
     };
+
+    @Override
+    public void asignarTraslado(Asignacion s) {
+        s.asignaEnPartesIguales();
+        controladorAsignarTraslado.guardarAsignacion(s);
+    }
     
 }

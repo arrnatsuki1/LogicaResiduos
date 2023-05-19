@@ -5,6 +5,7 @@
 package logica.logica2;
 
 
+import Excepciones.BaseException;
 import fachada.Asignacion;
 import fachada.Empresa;
 import fachada.FabricaDatos;
@@ -18,18 +19,19 @@ import java.util.List;
  */
 class ControladorAsignarTraslado {
     
-    public List<Solicitud> obtenerTodasLasSolicitudes() {
+    public List<Solicitud> obtenerTodasLasSolicitudes() throws BaseException{
         IDatos daodatos = FabricaDatos.getInstance();
-        return null;
+        return daodatos.obtenerTodasLasSolicitudes();
     }
     
-    public List<Empresa> obtenerTodasLasEmpresas() {
+    public List<Empresa> obtenerTodasLasEmpresas() throws BaseException{
         IDatos daodatos = FabricaDatos.getInstance();
-        return null;
+        return daodatos.obtenerTodasLasEmpresas();
     }
     
     public void guardarAsignacion(Asignacion asignacion) {
         IDatos daodatos = FabricaDatos.getInstance();
+        daodatos.guardarAsignacion(asignacion);
     }
     
 }

@@ -29,8 +29,8 @@ public interface ILogica {
     public boolean comprobarResiduo(Residuo residuo);
     public void guardarResiduo(Residuo residuo) throws MalformedResiduo, ResiduoExistenteException;
     public List<Quimico> obtenerTodosLosQuimicos() throws BaseException;
-    public List<Solicitud> obtenerTodasLasSolicitudes();
-    public List<Empresa> obtenerTodasLasEmpresas();
+    public List<Solicitud> obtenerTodasLasSolicitudes() throws BaseException;
+    public List<Empresa> obtenerTodasLasEmpresas() throws BaseException;
     public void guardarSolicitud(Solicitud solicitud);
     public List<Residuo> obtenerTodosLosResiduosDeProductor(String productor) throws BaseException;
     public boolean haySolicitudFechaProductor(Solicitud s);
@@ -40,4 +40,5 @@ public interface ILogica {
     public void guardarAsignacion(Asignacion asignacion);
     public void solicitarTraslado(Solicitud solicitud) throws MalformedSolicitud, ExcedeCantidadTrasladoException, SolicitudExistenteException;
     public long verificaCantidadFecha(Date dia);
+    public void asignarTraslado(Asignacion s) ;
 }
