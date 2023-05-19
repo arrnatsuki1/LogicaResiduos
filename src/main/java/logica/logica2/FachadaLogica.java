@@ -54,7 +54,7 @@ class FachadaLogica implements ILogica {
         residuo.verificar();
         //Comprueba que no exista antes
         if(controladorRegistrarResiduo.comprobarResiduo(residuo)) {
-            throw new ResiduoExistenteException("El quimico ya existe");
+            throw new ResiduoExistenteException("El residuo ya existe");
         }
         //Guarda el residuo
         controladorRegistrarResiduo.guardarResiduo(residuo);
